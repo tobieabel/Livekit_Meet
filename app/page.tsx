@@ -45,16 +45,33 @@ function DemoMeetingTab(props: { label: string }) {
   const router = useRouter();
   const [e2ee, setE2ee] = useState(false);
   const [sharedPassphrase, setSharedPassphrase] = useState(randomString(64));
+  const [roomName, setRoomName] = useState('');
+
   const startMeeting = () => {
+    if (!roomName.trim()) {
+      alert('Please enter a room name');
+      return;
+    }
+
     if (e2ee) {
-      router.push(`/rooms/${generateRoomId()}#${encodePassphrase(sharedPassphrase)}`);
+      router.push(`/rooms/${roomName}#${encodePassphrase(sharedPassphrase)}`);
     } else {
-      router.push(`/rooms/${generateRoomId()}`);
+      router.push(`/rooms/${roomName}`);
     }
   };
+
   return (
     <div className={styles.tabContent}>
       <p style={{ margin: 0 }}>Try LiveKit Meet for free with our live demo project.</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+        <input
+          type="text"
+          value={roomName}
+          onChange={(e) => setRoomName(e.target.value)}
+          placeholder="Enter room name"
+          style={{ padding: '0.5rem' }}
+        />
+      </div>
       <button style={{ marginTop: '1rem' }} className="lk-button" onClick={startMeeting}>
         Start Meeting
       </button>
