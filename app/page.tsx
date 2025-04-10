@@ -62,7 +62,7 @@ function DemoMeetingTab(props: { label: string }) {
 
   return (
     <div className={styles.tabContent}>
-      <p style={{ margin: 0 }}>Try LiveKit Meet for free with our live demo project.</p>
+      <p style={{ margin: 0 }}>Try our AI Agent for free with our live demo.</p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
         <input
           type="text"
@@ -177,42 +177,24 @@ function CustomConnectionTab(props: { label: string }) {
   );
 }
 
-export default function Page() {
+export default function Home() {
+  console.log('Home page loading');
   return (
     <>
       <main className={styles.main} data-lk-theme="default">
         <div className="header">
-          <img src="/images/livekit-meet-home.svg" alt="LiveKit Meet" width="360" height="45" />
-          <h2>
-            Open source video conferencing app built on{' '}
-            <a href="https://github.com/livekit/components-js?ref=meet" rel="noopener">
-              LiveKit&nbsp;Components
-            </a>
-            ,{' '}
-            <a href="https://livekit.io/cloud?ref=meet" rel="noopener">
-              LiveKit&nbsp;Cloud
-            </a>{' '}
-            and Next.js.
+          <img src="/images/ats_logo.svg" alt="ATS York" width="2160" height="270" style={{ marginBottom: '1rem' }} />
+          <h2 style={{ color: '#ff6352' }}>
+            Video conferencing with AI Assistant
           </h2>
         </div>
         <Suspense fallback="Loading">
           <Tabs>
-            <DemoMeetingTab label="Demo" />
+            <DemoMeetingTab label="ATS York Agent" />
             <CustomConnectionTab label="Custom" />
           </Tabs>
         </Suspense>
       </main>
-      <footer data-lk-theme="default">
-        Hosted on{' '}
-        <a href="https://livekit.io/cloud?ref=meet" rel="noopener">
-          LiveKit Cloud
-        </a>
-        . Source code on{' '}
-        <a href="https://github.com/livekit/meet?ref=meet" rel="noopener">
-          GitHub
-        </a>
-        .
-      </footer>
     </>
   );
 }

@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: livekit-meet
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LIVEKIT_API_KEY
+        sync: false # This means you'll set it manually in the dashboard
+      - key: LIVEKIT_API_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_LIVEKIT_URL
+        sync: false
+    autoDeploy: true # Enable auto-deployment on git push 

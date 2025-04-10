@@ -47,7 +47,12 @@ export const viewport: Viewport = {
   themeColor: '#070707',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  console.log('Root layout initializing');
   return (
     <html lang="en">
       <body>{children}</body>
