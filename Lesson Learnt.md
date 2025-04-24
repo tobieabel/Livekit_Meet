@@ -1,0 +1,13 @@
+# Lessons Learned: Modifying UI without altering `VideoConference`
+
+The key takeaway for adding UI elements related to specific participants (like our agent visualizer) without modifying the core `VideoConference` component lies in the **Overlay Pattern using React Portals**:
+
+1.  **Keep Core Components Clean:** The `VideoConference` component is complex and maintained by the LiveKit team. Overriding its internal rendering (like replacing the `ParticipantTile`) makes future library updates difficult and risks breaking internal logic. The goal is to *augment*, not *replace*.
+2.  **Leverage Hooks for State:** Use LiveKit's provided hooks (`useParticipants`, `useTracks`, etc.) within your *separate* custom component (`AgentVisualizerOverlay`) to get the necessary room state (who is an agent, what tracks they have).
+3.  **Identify Targets in the DOM:** Since the core component renders the participant tiles, your overlay component needs a reliable way to find the specific DOM element it wants to target. Using stable CSS classes (like `.lk-participant-tile`) and unique identifiers (like the participant identity rendered in `.lk-participant-name`) is a viable, though potentially fragile, strategy. Be mindful that changes in the underlying library's DOM structure could break this.
+4.  **Use `ReactDOM.createPortal`:** Portals are the essential tool here. They allow your overlay component (which might live high up in your component tree) to render its output into a different part of the DOM (typically `document.body` for global overlays).
+5.  **Calculate Position Dynamically:** Inside your overlay component, during the render phase (or carefully within `useEffect` if stable dependencies allow), calculate the target element's position and size using `getBoundingClientRect`.
+6.  **Apply Absolute Positioning:** Use the calculated coordinates to apply absolute positioning CSS to the element rendered via the portal. This visually places your overlay UI exactly where needed (e.g., on top of the target participant tile).
+7.  **Isolate Logic:** This isolates all the agent-specific UI logic into the `AgentVisualizerOverlay` component, making it easier to manage, debug, and modify independently of the main video conference UI.
+
+This overlay approach provides a flexible way to enhance the UI provided by third-party components without altering their source code, ensuring easier maintenance and updates. 

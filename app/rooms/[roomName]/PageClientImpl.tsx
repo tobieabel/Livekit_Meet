@@ -10,8 +10,8 @@ import {
   LiveKitRoom,
   LocalUserChoices,
   PreJoin,
-  VideoConference,
 } from '@livekit/components-react';
+import { AgentAwareVideoConference } from '@/app/components/AgentAwareVideoConference';
 import {
   ExternalE2EEKeyProvider,
   RoomOptions,
@@ -191,7 +191,7 @@ function VideoConferenceComponent(props: {
         onEncryptionError={handleEncryptionError}
         onError={handleError}
       >
-        <VideoConference
+        <AgentAwareVideoConference
           chatMessageFormatter={formatChatMessageLinks}
           SettingsComponent={SHOW_SETTINGS_MENU ? SettingsMenu : undefined}
         />

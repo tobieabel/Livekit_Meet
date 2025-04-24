@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRoomContext } from '@livekit/components-react';
-import { setLogLevel, LogLevel, RemoteTrackPublication, setLogExtension } from 'livekit-client';
+import { setLogLevel, LogLevel, RemoteTrackPublication, setLogExtension, RemoteParticipant } from 'livekit-client';
 // @ts-ignore
 import { tinykeys } from 'tinykeys';
 import { datadogLogs } from '@datadog/browser-logs';
@@ -58,9 +58,49 @@ export const DebugMode = ({ logLevel }: { logLevel?: LogLevel }) => {
   const [, setRender] = React.useState({});
   const [roomSid, setRoomSid] = React.useState('');
 
+  // Add function to log agent participants
+  const logAgentParticipants = React.useCallback(() => {
+    const agentParticipants = Array.from(room.remoteParticipants.values()).filter(
+      (participant: RemoteParticipant) => participant.isAgent
+    );
+    
+    if (agentParticipants.length > 0) {
+      console.log('\n%cAgent participants found:', 'color: #4CAF50; font-weight: bold;');
+      agentParticipants.forEach(p => {
+        console.log(
+          '%c- Identity: %c' + p.identity + 
+          '\n  Name: %c' + p.name + 
+          '\n  Metadata: %c' + p.metadata,
+          'color: #666;',
+          'color: #2196F3;',
+          'color: #2196F3;',
+          'color: #2196F3;'
+        );
+      });
+      console.log(''); // Add empty line for better readability
+    }
+  }, [room]);
+
   React.useEffect(() => {
     room.getSid().then(setRoomSid);
   }, [room]);
+
+  // Add effect to log agent participants when room state changes
+  React.useEffect(() => {
+    logAgentParticipants();
+    
+    // Subscribe to participant updates
+    const handleParticipantConnected = () => logAgentParticipants();
+    const handleParticipantDisconnected = () => logAgentParticipants();
+    
+    room.on('participantConnected', handleParticipantConnected);
+    room.on('participantDisconnected', handleParticipantDisconnected);
+    
+    return () => {
+      room.off('participantConnected', handleParticipantConnected);
+      room.off('participantDisconnected', handleParticipantDisconnected);
+    };
+  }, [room, logAgentParticipants]);
 
   useDebugMode({ logLevel });
 
