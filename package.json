@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@datadog/browser-logs": "^5.23.3",
+    "@livekit/components-core": "^0.12.4",
     "@livekit/components-react": "2.8.1",
     "@livekit/components-styles": "1.1.4",
     "@livekit/krisp-noise-filter": "0.2.16",
