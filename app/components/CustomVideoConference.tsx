@@ -151,7 +151,7 @@ export function CustomVideoConference({
                 </FocusLayoutContainer>
               </div>
             )}
-            <CustomControlBar controls={{ chat: true, settings: !!SettingsComponent }} />
+            <CustomControlBar controls={{ chat: true }} />
           </div>
           <Chat
             style={{ display: widgetState.showChat ? 'grid' : 'none' }}
