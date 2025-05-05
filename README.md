@@ -1,8 +1,8 @@
 <a href="https://atsyork.co.uk/">
-  <img src="/images/ats_logo.svg" alt="ATS York" width="100" height="100">
+  <img src="public/images/ats_logo.svg" alt="ATS York" width="100" height="100">
 </a>
 
-# LiveKit Meet
+# ATSYork AI Conference Call app
 
 <p>
   <a href="https://github.com/livekit/components-js">LiveKit Components</a>
@@ -18,7 +18,7 @@
 
 This is an open source video conferencing app built on [LiveKit Components](https://github.com/livekit/components-js), [LiveKit Cloud](https://cloud.livekit.io/), and Next.js. It's been completely redesigned from the ground up using our new components library.
 
-![LiveKit Meet screenshot](./.github/assets/livekit-meet.jpg)
+![ATS York Conference Call screenshot](ATS_York_App.jpg)
 
 ## Tech Stack
 
