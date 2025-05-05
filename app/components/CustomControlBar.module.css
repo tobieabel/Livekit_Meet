@@ -1,0 +1,32 @@
+.lk-control-bar-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lk-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: var(--lk-text);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.lk-button:hover {
+  background-color: var(--lk-control-bg-hover);
+}
+
+.lk-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lk-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+} 
