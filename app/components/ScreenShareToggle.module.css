@@ -1,0 +1,35 @@
+.lk-screen-share-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.lk-screen-share-options {
+  position: absolute;
+  top: 100%;
+  margin-top: 0.5rem;
+  background-color: var(--lk-control-bg);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: max-content;
+}
+
+.lk-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.lk-checkbox-input {
+  margin: 0;
+  cursor: pointer;
+}
+
+.lk-checkbox-label {
+  font-size: 0.875rem;
+  white-space: nowrap;
+} 

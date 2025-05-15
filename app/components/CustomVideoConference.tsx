@@ -39,6 +39,9 @@ export interface CustomVideoConferenceProps extends React.HTMLAttributes<HTMLDiv
  * It provides functionality such as focusing on one participant, grid view with pagination to handle large numbers
  * of participants, basic non-persistent chat, screen sharing, and more.
  *
+ * Screen sharing supports browser audio sharing, allowing users to share both their screen and audio from the browser,
+ * perfect for sharing videos or other audio content during presentations.
+ *
  * @remarks
  * The component is implemented with other LiveKit components like `FocusContextProvider`,
  * `GridLayout`, `ControlBar`, `FocusLayoutContainer` and `FocusLayout`.
